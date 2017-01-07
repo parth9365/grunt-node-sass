@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 
                 // ignore partials
                 if (path.basename(file).substr(0, 1) === '_')
-                    continue;
+                    return;
 
                 var result = sass.renderSync({
                     file: file,
