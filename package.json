@@ -1,0 +1,31 @@
+{
+  "name": "grunt-node-sass",
+  "description": "Grunt wrapper for node-sass",
+  "version": "0.0.1",
+  "author": {
+    "name": "Shukri Adams",
+    "email": "shukri.adams@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shukriadams/grunt-node-sass.git"
+  },
+  "licenses": [
+    {
+      "url": "https://github.com/shukriadams/grunt-node-sass.git"
+    }
+  ],
+  "main": "tasks/grunt-node-sass.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+
+  },
+  "dependencies": {
+    "node-sass": "3.4.2",
+    "mkdirp": "0.5.1",
+    "glob": "5.0.15"
+  },
+  "keywords": []
+}
