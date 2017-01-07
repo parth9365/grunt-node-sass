@@ -19,22 +19,19 @@ module.exports = function(grunt) {
         
 
         var done = this.async();
-        var sassGlob = config.sassGlob,
+        var scssPath = config.scssPath,
             cssOutFolder = config.cssFolder;
         
-        if (!sassGlob)
-            grunt.log.error(pluginName + ' could not find expected value "sassGlob".');
+        if (!scssPath)
+            grunt.log.error(pluginName + ' could not find expected value "scssPath".');
 
         if (!cssOutFolder)
             grunt.log.error(pluginName + ' could not find expected value for "cssOutFolder".');
-        
-
-
 
         if (!fs.existsSync(cssOutFolder))
             mkdirp.sync(cssOutFolder);
 
-        glob(sassGlob, config.globOptions, function (er, files) {
+        glob(scssPath, config.globOptions, function (er, files) {
             files.forEach(function(file, i ){
                 var outfile = path.join(
                     cssOutFolder,
@@ -50,6 +47,8 @@ module.exports = function(grunt) {
                 });
 
                 fs.writeFileSync(outfile, result.css);
+
+                console.log(pluginName + ' compiled ' + outfile);
 
                 if (i == files.length - 1){
                     done();
