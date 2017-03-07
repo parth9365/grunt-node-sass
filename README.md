@@ -17,5 +17,5 @@ A trivial Grunt wrapper for node-sass.
         })
     }
 
-    grunt.loadNpmTasks('grunt-gruntNodeSass');
+    grunt.loadNpmTasks('grunt-node-sass');
 
