@@ -63,6 +63,7 @@ module.exports = function(grunt) {
                 }, function(err, result){
 
                     if (err){
+                        console.log('error compiling : ' + file);                        
                         console.log(err);
                     } else {
                         fs.writeFileSync(outfile, result.css);
