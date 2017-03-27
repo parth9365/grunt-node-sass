@@ -31,28 +31,48 @@ module.exports = function(grunt) {
         if (!fs.existsSync(cssOutFolder))
             mkdirp.sync(cssOutFolder);
 
+
         glob(scssPath, config.globOptions, function (er, files) {
+
+            if (er){
+                console.log(er)
+                done();
+                return;
+            }
+
+            function checkIfDone(i){
+                if (i == files.length - 1){
+                    done();
+                }
+            }
+
             files.forEach(function(file, i ){
                 var outfile = path.join(
                     cssOutFolder,
                     path.basename(file).substr(0, path.basename(file).length - 5) + '.css'); // remove .scss extension
 
                 // ignore partials
-                if (path.basename(file).substr(0, 1) === '_')
+                if (path.basename(file).substr(0, 1) === '_'){
+                    checkIfDone(i);
                     return;
+                }
 
-                var result = sass.renderSync({
+                var result = sass.render({
                     file: file,
                     sourceComments: true
+                }, function(err, result){
+
+                    if (err){
+                        console.log(err);
+                    } else {
+                        fs.writeFileSync(outfile, result.css);
+                        console.log(pluginName + ' compiled ' + outfile);
+                    }
+
+                    checkIfDone(i);
+
                 });
 
-                fs.writeFileSync(outfile, result.css);
-
-                console.log(pluginName + ' compiled ' + outfile);
-
-                if (i == files.length - 1){
-                    done();
-                }
             });
 
         });
