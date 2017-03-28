@@ -41,7 +41,7 @@ module.exports = function(grunt) {
             }
 
             function checkIfDone(i){
-                if (i == files.length - 1){
+                if (i === files.length){
                     done();
                 }
             }
