@@ -40,8 +40,10 @@ module.exports = function(grunt) {
                 return;
             }
 
-            function checkIfDone(i){
-                if (i === files.length){
+            var processedCount = 0;
+            function checkIfDone(){
+                processedCount ++;
+                if (processedCount === files.length){
                     done();
                 }
             }
@@ -53,7 +55,7 @@ module.exports = function(grunt) {
 
                 // ignore partials
                 if (path.basename(file).substr(0, 1) === '_'){
-                    checkIfDone(i);
+                    checkIfDone();
                     return;
                 }
 
@@ -70,7 +72,7 @@ module.exports = function(grunt) {
                         console.log(pluginName + ' compiled ' + outfile);
                     }
 
-                    checkIfDone(i);
+                    checkIfDone();
 
                 });
 
