@@ -35,8 +35,7 @@ module.exports = function(grunt) {
         glob(scssPath, config.globOptions, function (er, files) {
 
             if (er){
-                console.log(er)
-                done();
+                grunt.fail.warn(er);
                 return;
             }
 
@@ -65,8 +64,7 @@ module.exports = function(grunt) {
                 }, function(err, result){
 
                     if (err){
-                        console.log('error compiling : ' + file);                        
-                        console.log(err);
+                        grunt.fail.warn('error compiling : ' + file + ' : ' + err);
                     } else {
                         fs.writeFileSync(outfile, result.css);
                         console.log(pluginName + ' compiled ' + outfile);
