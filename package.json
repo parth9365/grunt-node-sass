@@ -23,7 +23,7 @@
 
   },
   "dependencies": {
-    "node-sass": "4.5.2",
+    "node-sass": "4.5.3",
     "mkdirp": "0.5.1",
     "glob": "5.0.15"
   },
